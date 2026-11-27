@@ -53,5 +53,16 @@ footer{background:#f7d6e8;text-align:center;padding:20px}
 <p>© 2026 Angel Craft Studio</p>
 <p>Made with Love 🩷</p>
 </footer>
+<script>
+function orderWhatsApp(name, price) {
+  const phone = "8801571434018";
+  const msg = `I want to order ${name}. Price: ${price}`;
+  window.open(
+    "https://wa.me/" + phone + "?text=" +
+    encodeURIComponent(msg),
+    "_blank"
+  );
+}
+</script>
 </body>
 </html>
