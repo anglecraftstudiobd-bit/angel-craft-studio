@@ -1,108 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Angel Craft Studio</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#fff8fc;
- color:#493342;
-}
-header{
- background:#f7d6e8;
- padding:20px;
- text-align:center;
-}
-.logo{
- width:100px;
- height:100px;
- border-radius:50%;
- object-fit:cover;
- background:white;
-}
-header h1{color:#b34e82;margin:10px}
-nav{
- background:white;
- padding:15px;
- text-align:center;
- position:sticky;
- top:0;
-}
-nav a{
- margin:10px;
- color:#a33c70;
- text-decoration:none;
- font-weight:bold;
-}
-.hero{
- text-align:center;
- padding:55px 15px;
- background:#fff0f7;
-}
-.hero h2{color:#b34e82;font-size:30px}
-.btn{
- background:#c45c91;
- color:white;
- padding:12px 22px;
- border:0;
- border-radius:25px;
- text-decoration:none;
- cursor:pointer;
- display:inline-block;
-}
-section{padding:30px 15px;text-align:center}
-.search{
- padding:12px;
- width:90%;
- max-width:400px;
- border:1px solid #e7b6d0;
- border-radius:20px;
-}
-.products{
- display:flex;
- flex-wrap:wrap;
- justify-content:center;
- gap:18px;
-}
-.product{
- background:white;
- padding:20px;
- width:230px;
- border-radius:15px;
- box-shadow:0 2px 10px #ead5e0;
-}
-.product h3{color:#b34e82}
-.price{
- color:#b34e82;
- font-weight:bold;
- font-size:19px;
-}
-.cart{
- background:#fff0f7;
- padding:20px;
- border-radius:15px;
- max-width:500px;
- margin:auto;
-}
-footer{
- background:#f7d6e8;
- padding:20px;
- text-align:center;
-}
+body{margin:0;font-family:Arial,sans-serif;background:#fff8fc;color:#493342}
+header,footer{background:#f7d6e8;text-align:center;padding:22px}
+header img{width:100px;height:100px;object-fit:contain;border-radius:50%;background:white}
+h1,h2,h3{color:#b34e82}
+nav{background:white;padding:15px;text-align:center}
+nav a{margin:9px;color:#a33c70;text-decoration:none;font-weight:bold}
+.hero{text-align:center;padding:55px 15px;background:#fff0f7}
+.btn{background:#c45c91;color:white;padding:12px 20px;border:0;border-radius:25px;text-decoration:none;display:inline-block;cursor:pointer}
+section{text-align:center;padding:30px 15px}
+.search{padding:12px;border:1px solid #e7b6d0;border-radius:20px;width:90%;max-width:400px}
+.products{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+.product,.cart{background:white;padding:20px;border-radius:15px;width:230px;box-shadow:0 2px 10px #ead5e0}
+.price{color:#b34e82;font-weight:bold}
+.cart{width:95%;max-width:500px;margin:auto}
 </style>
 </head>
-
 <body>
 
 <header>
-<img class="logo" src="File0000000000000000.png"
-alt="Angel Craft Studio Logo">
+<img src="File0000000000000000.png" alt="Angel Craft Studio Logo">
 <h1>Angel Craft Studio 🪽</h1>
 <p>Handmade with Love</p>
 </header>
@@ -122,10 +45,7 @@ alt="Angel Craft Studio Logo">
 
 <section id="products">
 <h2>Our Collection 🩷</h2>
-<input class="search" id="search"
-placeholder="Search products..."
-oninput="showProducts()">
-
+<input class="search" id="search" placeholder="Search products..." oninput="showProducts()">
 <div class="products" id="productList"></div>
 </section>
 
@@ -134,19 +54,14 @@ oninput="showProducts()">
 <div class="cart">
 <div id="cartItems">Your cart is empty.</div>
 <h3>Total: ৳<span id="total">0</span></h3>
-<button class="btn" onclick="checkout()">
-Order on WhatsApp
-</button>
+<button class="btn" onclick="checkout()">Order on WhatsApp</button>
 </div>
 </section>
 
 <section id="contact">
 <h2>Contact Us</h2>
-<p>Have a question? Contact us on WhatsApp.</p>
-<a class="btn"
-href="https://wa.me/8801571434018">
-WhatsApp Contact
-</a>
+<p>Order your favourite handmade crafts.</p>
+<a class="btn" href="https://wa.me/8801571434018">WhatsApp Contact</a>
 </section>
 
 <footer>
@@ -158,83 +73,77 @@ WhatsApp Contact
 const phone="8801571434018";
 
 const products=[
- {name:"Handmade Craft 1",price:250},
- {name:"Handmade Craft 2",price:350},
- {name:"Handmade Craft 3",price:450}
+{name:"Handmade Craft 1",price:250},
+{name:"Handmade Craft 2",price:350},
+{name:"Handmade Craft 3",price:450}
 ];
 
 let cart=[];
 
 function showProducts(){
- const search=document.getElementById("search").value.toLowerCase();
- const list=document.getElementById("productList");
- list.innerHTML="";
+const search=document.getElementById("search").value.toLowerCase();
+const list=document.getElementById("productList");
+list.innerHTML="";
 
- products.filter(p=>p.name.toLowerCase().includes(search))
- .forEach((p)=>{
-  list.innerHTML+=`
-   <div class="product">
-    <h3>${p.name}</h3>
-    <p>Beautiful handmade creation.</p>
-    <p class="price">৳${p.price}</p>
-    <button class="btn" onclick="addCart('${p.name}')">
-    Add to Cart
-    </button>
-   </div>`;
- });
+products.filter(p=>p.name.toLowerCase().includes(search))
+.forEach(p=>{
+list.innerHTML+=`
+<div class="product">
+<h3>${p.name}</h3>
+<p>Beautiful handmade creation.</p>
+<p class="price">৳${p.price}</p>
+<button class="btn" onclick="addCart('${p.name}')">Add to Cart</button>
+</div>`;
+});
 }
 
 function addCart(name){
- const p=products.find(x=>x.name===name);
- cart.push(p);
- updateCart();
-}
-
-function updateCart(){
- const area=document.getElementById("cartItems");
- let total=0;
-
- if(cart.length===0){
-  area.innerHTML="Your cart is empty.";
- }else{
-  area.innerHTML=cart.map((p,i)=>{
-   total+=p.price;
-   return `<p>${p.name} - ৳${p.price}
-   <button onclick="removeItem(${i})">Remove</button></p>`;
-  }).join("");
- }
-
- document.getElementById("total").innerText=total;
+const p=products.find(x=>x.name===name);
+cart.push(p);
+updateCart();
 }
 
 function removeItem(i){
- cart.splice(i,1);
- updateCart();
+cart.splice(i,1);
+updateCart();
+}
+
+function updateCart(){
+let total=0;
+const area=document.getElementById("cartItems");
+
+if(!cart.length){
+area.innerHTML="Your cart is empty.";
+}else{
+area.innerHTML=cart.map((p,i)=>{
+total+=p.price;
+return `<p>${p.name} - ৳${p.price}
+<button onclick="removeItem(${i})">Remove</button></p>`;
+}).join("");
+}
+document.getElementById("total").innerText=total;
 }
 
 function checkout(){
- if(cart.length===0){
-  alert("Please add a product first!");
-  return;
- }
+if(!cart.length){
+alert("Please add a product first!");
+return;
+}
 
- let total=cart.reduce((sum,p)=>sum+p.price,0);
- let message="Hello Angel Craft Studio! I want to order:\n";
+let total=0;
+let message="Hello Angel Craft Studio! I want to order:\n";
 
- cart.forEach(p=>{
-  message+=p.name+" - Tk "+p.price+"\n";
- });
+cart.forEach(p=>{
+message+=p.name+" - Tk "+p.price+"\n";
+total+=p.price;
+});
 
- message+="Total: Tk "+total;
+message+="Total: Tk "+total;
 
- window.open(
-  "https://wa.me/"+phone+"?text="+encodeURIComponent(message),
-  "_blank"
- );
+window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank");
 }
 
 showProducts();
 </script>
-
 </body>
 </html>
